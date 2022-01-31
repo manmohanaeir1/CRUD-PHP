@@ -1,0 +1,9 @@
+>>>>>main>>>>
+$git clone https://github.com/manmohanaeir1/CRUD-PHP.git
+$git add -A
+$git commit -m "comments"
+$git push
+
+<<<master>>>
+  $git add .
+  $git push origin master
