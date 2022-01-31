@@ -38,7 +38,7 @@ include 'header.php';
                 <td><?php echo $row['s_email']; ?></td>
 
                 <td>
-                    <a href='edit.php'>Edit</a>
+                    <a href='edit.php?id=<?php echo $row['s_id']; ?>'>Edit</a>
                     <a href='delete-inline.php'>Delete</a>
                 </td>
             </tr>
