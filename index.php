@@ -33,7 +33,7 @@ include 'header.php';
                 <td><?php echo $row['s_id']; ?> </td>
                 <td><?php echo $row['s_name']; ?></td>
                 <td><?php echo $row['s_address']; ?></td>
-                <td><?php echo $row['s_class'] ;?></td>
+                <td><?php echo $row['c_name'] ;?></td>
                 <td><?php echo $row['s_phone']; ?></td>
                 <td><?php echo $row['s_email']; ?></td>
 
