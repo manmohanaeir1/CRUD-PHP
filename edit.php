@@ -25,7 +25,7 @@
       </div>
       <div class="form-group">
           <label>Class</label>
-          <?php
+        <?php
             $sql1 = "SELECT * FROM student_class";
             $result1 = mysqli_query($conn, $sql1) or die("query unsucecss");
                 if(mysqli_num_rows($result1) > 0 )

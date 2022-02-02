@@ -1,39 +1,82 @@
 <?php include 'header.php'; ?>
 <div id="main-content">
     <h2>Edit Record</h2>
-    <form class="post-form" action="" method="post">
+    <form class="post-form" action=" <?php  $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="form-group">
             <label>Id</label>
-            <input type="text" name="sid" />
+            <input type="text" name="s_phone" />
         </div>
         <input class="submit" type="submit" name="showbtn" value="Show" />
     </form>
+     
+    <?php
+    if(isset($_POST['showbtn'])){
+        $conn = mysqli_connect("localhost", "root", "", "crud") or die("Connection failled");
+       // $stu_id = $_POST['s_id'];  
+        $stu_phone = $_POST['s_phone'];
+        $sql = "SELECT * FROM student WHERE s_phone = {$stu_phone} ";
+        $result = mysqli_query($conn, $sql) or die("query unsucecss");
+        if(mysqli_num_rows($result) > 0 )
+        {
+            while($row = mysqli_fetch_assoc($result)){
+
+        
+    ?>
 
     <form class="post-form" action="updatedata.php" method="post">
         <div class="form-group">
             <label for="">Name</label>
-            <input type="hidden" name="sid"  value="" />
-            <input type="text" name="sname" value="" />
+            <input type="hidden" name="s_id"  value="<?php echo $row['s_id'];?>" />
+            <input type="text" name="s_name" value="<?php echo $row['s_name'];?>" />
         </div>
         <div class="form-group">
             <label>Address</label>
-            <input type="text" name="saddress" value="" />
+            <input type="text" name="s_address" value="<?php echo $row['s_address'];?>" />
         </div>
         <div class="form-group">
         <label>Class</label>
-        <select name="sclass">
-            <option value="" selected disabled>Select Class</option>
-            <option value="1">BCA</option>
-            <option value="2">BSC</option>
-            <option value="3">B.TECH</option>
-        </select>
+        <?php
+            $sql1 = "SELECT * FROM student_class";
+            $result1 = mysqli_query($conn, $sql1) or die("query unsucecss");
+                if(mysqli_num_rows($result1) > 0 )
+            {
+                echo ' <select name="s_class">';
+                while($row1= mysqli_fetch_assoc($result1)){
+                    if ($row['s_class']== $row1['c_id']) {
+                        $select ="selected";
+                    }
+                    else{
+                        $select  = " ";
+                    }
+                
+                    echo "<option {$select}  value='{$row1['c_id']}'>{$row1['c_name']}</option>";
+                }
+            echo "</select>";
+            }
+    
+        ?>
+
         </div>
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="sphone" value="" />
+            <input type="text" name="sphone" value="<?php echo $row['s_phone'];?>" />
         </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" name="s_email" value="<?php echo $row['s_email'];?>"/>
+      </div>
     <input class="submit" type="submit" value="Update"  />
     </form>
+    <?php 
+          }
+        }
+        else
+        {
+            echo "no record!!";
+        }
+    }
+   
+     ?>
 </div>
 </div>
 </body>
